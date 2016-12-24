@@ -1,23 +1,22 @@
 <?php
-クッキーについて
-// クライアント側(ブラウザ)に保存できる小さなデータ
-
-setcookie('name', 'kashiwagi', time() - 3600);
-setcookie('name', 'kashiwagi', time() + 60*60);
-setcookie('name', 'kashiwagi');
-setcookie('email', 'kashiwagi@example.com');
-
-var_dump($_COOKIE);
-
-
-セッションについて
-
-// サーバー側にデータを保存する
 
 session_start();
 
-$_SESSION['name'] = 'kashiwagi';
+if (empty($_SESSION['id']))
+{
+	header('Location: login.php');
+	exit;
+}
 
-var_dump($_SESSION);
+?>
 
-$_SESSION = array();
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>会員限定画面</title>
+</head>
+<body>
+	<h1>登録したユーザーのみ閲覧可能です!</h1>
+</body>
+</html>
