@@ -5,6 +5,8 @@ require_once('functions.php');
 
 session_start;
 
+$_session['id'] = array();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	$name = $_POST['name'];
@@ -22,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
 		$errors['password'] = 'パスワードが未入力です';
 	}
-}
 
 // バリデーション突破後
 if (empty($errors))
@@ -42,6 +43,7 @@ if (empty($errors))
 	exit;
 }
 
+}
 ?>
 
 <!DOCTYPE html>

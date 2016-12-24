@@ -6,11 +6,11 @@ require_once('functions.php');
 session_start();
 
 // $_session['id'] = id;
-// $_session['id'] = array();
+$_session['id'] = array();
 
 if (!empty($_session['id']))
 {
-	header('location: index.php');
+	header('Location: index.php');
 	exit;
 }
 
@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	{
 		$errors['password'] = 'パスワードが未入力です';
 	}
-}
 
 // バリデーション突破後
 if (empty($errors))
@@ -64,6 +63,7 @@ if (empty($errors))
 	{
 		echo 'ユーザーネームかパスワードが間違っています';
 	}
+}
 }
 ?>
 
