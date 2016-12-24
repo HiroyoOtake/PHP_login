@@ -24,6 +24,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	}
 }
 
+// バリデーション突破後
+if (empty($errors))
+{
+	$dbh = connectDatabase();
+
+	$sql = "insert into users (name, password, created_at) values
+		(:name, :password, now())";
+	$stmt = $dbh->prepare($sql);
+
+	$stmt->bindParam(":name", $name);
+	$stmt->bindParam(":password", $password);
+
+	$stmt->execute();
+	
+	header('Location: login.php');
+	exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			<?php echo h($errors['password']) ?>
 		<?php endif; ?>
 		<br>
-		<input type="submit" value="ログイン">
+		<input type="submit" value="登録">
 	</form>
 	<a href="login.php">ログインはこちら</a>
 </body>

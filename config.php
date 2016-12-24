@@ -2,7 +2,7 @@
 
 // DB接続に必要な情報
 define('DSN', 'mysql:host=localhost;dbname=nowall_login;charset=utf8');
-define('USERS', 'root' );
+define('USER', 'root' );
 define('PASSWORD', 'root');
 
 // エラーレベルの設定
