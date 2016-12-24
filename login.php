@@ -36,6 +36,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 // バリデーション突破後
 if (empty($errors))
 {
+	// 入力された値を持つレコードがあるか調べる
+	$dbh = connectDatabase();
+
+	$sql = "select * from users where name = :name and password = :password";
+	$stmt = $dbh->prepare($sql);
+
+	$stmt->bindParam(":name", $name);
+	$stmt->bindParam(":password", $password);
+
+	$stmt->execute();
+
+	$row = $stmt->fetch();
+
+	var_dump($row);
+
+	// 該当レコードがあった場合は$_SESSION['id']に値を持たせてindex.phpへ
+	// なかった場合は、エラーメッセージを出す 	
+	
+	if ($row)
+	{
+		$_SESSION['id'] = $row['id'];
+		header('Location: index.php');
+		exit;
+	}
+	else
+	{
+		echo 'ユーザーネームかパスワードが間違っています';
+	}
 }
 ?>
 
