@@ -1,31 +1,23 @@
 <?php
 
-session_start();
+require_once('config.php');
+require_once('functions.php');
 
-// $_SESSION['id'] = id;
-// $_SESSION['id'] = array();
-
-if (!empty($_SESSION['id']))
-{
-	header('Location: index.php');
-	exit;
-}
-
+session_start;
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>ログイン画面</title>
+	<title>新規登録画面</title>
 </head>
 <body>
-	<h1>ログイン画面です!</h1>
+	<h1>新規登録画面です!</h1>
 	<form action="" method="post">
 		ユーザーネーム: <input type="text" name="name"><br>
 		パスワード: <input type="text" name="password"><br>
 		<input type="submit" value="ログイン">
 	</form>
-	<a href="signup.php">新規ユーザー登録はこちら</a>
+	<a href="login.php">ログインはこちら</a>
 </body>
 </html>
